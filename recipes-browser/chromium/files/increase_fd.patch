@@ -1,0 +1,34 @@
+commit fe1685d8bb8d9f457c33ce393bed5716b4d3112d
+Author: Joone Hur <joone.hur@intel.com>
+Date:   Wed Sep 13 14:43:26 2017 -0700
+
+    Increase the number of open files in Mash
+    
+    Increase the number of open files for sharing DRM fds between the render
+    process and the GPU thread.
+    
+    It fixes the crash problem when running http://browsertests.herokuapp.com/perf/background_color_animation.html
+
+diff --git a/mash/runner/main.cc b/mash/runner/main.cc
+index 83d4e76..22f00b9 100644
+--- a/mash/runner/main.cc
++++ b/mash/runner/main.cc
+@@ -19,6 +19,7 @@
+ #include "base/message_loop/message_loop.h"
+ #include "base/path_service.h"
+ #include "base/process/launch.h"
++#include "base/process/process_metrics.h"
+ #include "base/run_loop.h"
+ #include "base/threading/platform_thread.h"
+ #include "base/threading/thread.h"
+@@ -68,6 +69,10 @@ int main(int argc, char** argv) {
+   SetDllDirectory(exe_path.value().c_str());
+ #endif
+ 
++  // Increase the number of open files for sharing DRM fds between the render
++  // process and the GPU thread.
++  base::SetFdLimit(8192);
++
+   base::i18n::InitializeICU();
+ 
+   mojo::edk::Init();

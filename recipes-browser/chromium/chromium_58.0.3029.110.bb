@@ -26,6 +26,7 @@ SRC_URI += " \
         file://0013-Intel-GPU-specific-optimization-in-GLES.patch \
         file://zero-copy-texture-upload.patch \
         file://video_acceleration.patch \
+        file://increase_fd.patch \
         ${@bb.utils.contains('PACKAGECONFIG', 'root-profile', 'file://root-user-profile.patch', '', d)} \
         "
 
