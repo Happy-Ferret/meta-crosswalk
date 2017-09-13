@@ -1,4 +1,5 @@
 This instruction explains step by step how to build a platform image including Chromium ozone-gbm using Yocto.
+First, please see [the yocto document](http://www.yoctoproject.org/docs/1.8/yocto-project-qs/yocto-project-qs.html) to install dependent packages.
 
 ## Build a platform image with Yocto.
 ### Clone Yocto recipe repositories that need to build Chromium.
