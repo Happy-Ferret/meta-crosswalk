@@ -74,7 +74,7 @@ $ bitbake chromium
 First, you need to create a USB image as follows:
 ```
 $ cd tmp/deploy/images/<build_arch_dir>
-$ sudo dd if=<image_name>.hddimg of=/dev/sdc
+$ sudo dd if=<image_name>.hddimg of=/dev/sdc bs=1M; sync
 ```
 
 If the board does not boot automactically, you can boot it manually from the EFI shell as follows:
